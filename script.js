@@ -23,16 +23,14 @@ document.querySelectorAll('.section, header').forEach(section => {
 
 // bouton d'info
 
-const btnMines = document.getElementsByClassName('btn-info');
-const infoMines = document.getElementsByClassName('details-cache');
+const btnElem = document.querySelectorAll('.btn-info');
 
-btnMines.addEventListener('click', function() {
+btnElem.forEach(button => {
+    button.addEventListener('click', function() {
+        const infoBtn = button.closest('li').nextElementSibling;
+        if (!infoBtn) return;
 
-    infoMines.classList.toggle('d-none');
-
-    if (infoMines.classList.contains('d-none')) {
-        btnMines.textContent = "+";
-    } else {
-        btnMines.textContent = "-";
-    }
+        infoBtn.classList.toggle('d-none');
+        button.textContent = infoBtn.classList.contains('d-none') ? '+' : '-';
+    });
 });
